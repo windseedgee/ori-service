@@ -1,18 +1,13 @@
 package com.example.oriservice.service;
 
 import com.example.oriservice.dto.FileDownloadResponse;
-import com.example.oriservice.dto.StudentDto;
-import com.example.oriservice.entity.Student;
-import com.example.oriservice.repository.StudentRepository;
 import com.example.oriservice.utils.FileUtil;
 import com.example.oriservice.utils.FileUtilV2;
 import com.google.common.collect.Lists;
 import com.itextpdf.text.DocumentException;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -20,7 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
@@ -29,8 +23,6 @@ import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.coyote.http11.Http11NioProtocol;
-import org.springframework.core.task.VirtualThreadTaskExecutor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -45,8 +37,6 @@ public class VirtualThreadServiceImpl implements VirtualThreadService {
 
 
     private final RestTemplate baseRestTemplate;
-
-    private static final int FILE_SIZE_LIMIT = 10 * 1024 * 1024;
 
     private static final String FINALIZED_INVOICE_PDF_PATTER_STRING = "Invoice - \\d{8}-.*\\.pdf";
     private static final String INVOICE_PDF_PATTERN_STRING = "Invoice - I-\\w{3}\\d{4,5}-\\d*.pdf";
@@ -127,7 +117,7 @@ public class VirtualThreadServiceImpl implements VirtualThreadService {
         return fileDownloadResponseList;
     }
 
-    public List<File> downloadImageAndPdfFiles(List<String> urls, Long shipperId) throws Exception, DocumentException {
+    public List<File> downloadImageAndPdfFiles(List<String> urls, Long shipperId) throws Exception {
         log.debug("downloadImageAndPdfFiles url size : {}, urls : {}", urls.size(), urls);
         List<File> imageFiles = Lists.newArrayList();
         List<File> pdfFiles = Lists.newArrayList();
