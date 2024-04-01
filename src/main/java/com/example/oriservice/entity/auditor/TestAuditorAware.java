@@ -1,4 +1,4 @@
-package com.example.oriservice.entity;
+package com.example.oriservice.entity.auditor;
 
 import java.util.Optional;
 import org.springframework.data.domain.AuditorAware;
