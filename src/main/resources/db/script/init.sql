@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS customer
     KEY,
     name
     VARCHAR,
-    type
+    password
     VARCHAR,
     created_by
     VARCHAR,
@@ -111,12 +111,42 @@ CREATE TABLE IF NOT EXISTS authority
 CREATE TABLE IF NOT EXISTS role
 (
     id
-    UUID
+    int
+    NOT
+    NULL
+    PRIMARY
+    KEY,
+    user_id
+    int,
+    name
+    VARCHAR,
+    created_by
+    VARCHAR,
+    updated_by
+    VARCHAR,
+    created_at
+    TIMESTAMPTZ
+    NOT
+    NULL
+    DEFAULT
+    NOW
+(
+),
+    deleted_at TIMESTAMPTZ,
+    updated_at TIMESTAMPTZ
+    );
+
+CREATE TABLE IF NOT EXISTS users
+(
+    id
+    int
     NOT
     NULL
     PRIMARY
     KEY,
     name
+    VARCHAR,
+    password
     VARCHAR,
     created_by
     VARCHAR,

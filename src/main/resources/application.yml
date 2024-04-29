@@ -16,6 +16,9 @@ spring:
   threads:
     virtual:
       enabled: true
+  application:
+    name: ori-service
+
 
 http:
   rest:
