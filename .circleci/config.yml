@@ -1,24 +1,19 @@
-# CircleCI configuration file
 version: 2.1
 
 jobs:
-  # Job one with a unique name
-  say_hello:
+  build:
     docker:
-      - image: cimg/base:2022.05
+      - image: alpine:3.15
     steps:
-      - run: echo "Say hello to YAML!"
-  # Job two with a unique name
-  say_goodbye:
-    docker:
-      - image: cimg/base:2022.05
-    steps:
-      - run: echo "Say goodbye to YAML!"
+      - run:
+          name: The First Step
+          command: |
+            echo 'Hello World!'
+            echo 'This is the delivery pipeline'
 
 workflows:
   # Name of workflow
-  hello_and_goodbye:
+  ori-service-build:
     # List of jobs that will run
     jobs:
-      - say_hello
-      - say_goodbye
+      - build
