@@ -5,6 +5,7 @@ jobs:
     docker:
       - image: alpine:3.15
     steps:
+      - checkout
       - run:
           name: The First Step
           command: |
